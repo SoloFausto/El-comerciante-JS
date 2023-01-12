@@ -1,0 +1,22 @@
+{
+  "name": "alpine-l",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/router.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SoloFausto/Alpine-L.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SoloFausto/Alpine-L/issues"
+  },
+  "homepage": "https://github.com/SoloFausto/Alpine-L#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
