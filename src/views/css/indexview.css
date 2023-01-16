@@ -1,0 +1,84 @@
+body{
+	background-image: url("/resources/dolcezzabckgr.jpg");
+	background-repeat:no-repeat;
+	background-size: cover;
+}
+.imagendolcezza{
+    width: 70%;
+	border-radius: 30px;
+	margin-bottom: 10%;
+}
+.background{
+	background-attachment: fixed;
+}
+.fondo{
+    background-color: #f8d393;
+    text-align: center;
+    margin-top: 4%;
+	border:1px solid #E7B870;
+	display:inline-flex;
+    flex-direction: column;
+	padding-top: 3%; 
+	margin-left: 40%;
+	width: 20%;
+	align-items: center;
+	border-radius: 20px;
+}
+.seleccion{
+	padding-top: 5%;
+	padding-bottom: 7%;
+	width: 90%;
+}
+.inSesion {
+	box-shadow: 0px 1px 0px 0px #00000036;
+	background:linear-gradient(to bottom, #E7B870 5%, #f0d3a8 100%);
+	background-color:#f8d393;
+	border-radius:16px;
+	border:2px solid #E7B870;
+	display:inline-block;
+	cursor:pointer;
+	color:#505739;
+	font-family:Arial;
+	font-size:100%;
+	font-weight:bold;
+	width: 100%;
+	padding-top: 6%;
+	padding-bottom: 6%;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #00000036;
+	margin-bottom: 1%;
+}
+.inSesion:hover {
+	background:linear-gradient(to bottom, #f0d3a8 5%, #E7B870 100%);
+	background-color:#f0d3a8;
+}
+.inSesion:active {
+	position:relative;
+	top:1px;
+}
+.newTablet {
+	box-shadow: 0px 1px 0px 0px #00000036;
+	background:linear-gradient(to bottom, #E7B870 5%, #f0d3a8 100%);
+	background-color:#E7B870;
+	border-radius:16px;
+	border:2px solid #E7B870;
+	display:inline-block;
+	cursor:pointer;
+	color:#505739;
+	font-family:Arial;
+	font-size:100%;
+	font-weight:bold;
+	width: 100%;
+	padding-top: 6%;
+	padding-bottom: 6%;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #00000036;
+}
+.newTablet:hover {
+	background:linear-gradient(to bottom, #f0d3a8 5%, #E7B870 100%);
+	background-color:#f0d3a8;
+}
+.newTablet:active {
+	position:relative;
+	top:1px;
+}

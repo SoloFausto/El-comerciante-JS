@@ -1,0 +1,88 @@
+  body{
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    font-family: sans-serif;
+    background-color: #f8d393;
+    text-align: center;
+  }
+  .imgDolcezza{
+    width: 66%;
+    height: 59%;
+	  border-radius: 10%;
+    margin-bottom: 5%;
+  }
+  .send{
+    color: black;
+    margin-top: 2%;
+  }
+  .back{
+    display: flex;
+    margin: 4vh;
+    align-items: center;
+  }
+  .btn-outline-dark{
+    width: 10vh;
+    height: 9vh;
+  }
+  .login-box {
+    width: 320px;
+    height: 420px;
+    color: #8d7244;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 70px 30px;
+    background: rgba(255,255,255,0.4);
+    -webkit-backdrop-filter: blur(1px);
+    backdrop-filter: blur(1px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+  }
+
+  .login-box input[type="text"], .login-box input[type="password"] {
+    border: solid 1px;
+    text-align: center;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 20px;
+    width: 20%;
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+  }
+  
+  .login-box input {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .login-box input[type="submit"] {
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #8d7244;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+    margin-top: 5%;
+  }
+  
+  .login-box input[type="submit"]:hover {
+    cursor: pointer;
+    background: #5c4b2d;
+    color: #000;
+  }
+  
+  .login-box a {
+    text-decoration: none;
+    font-size: 12px;
+    line-height: 20px;
+    color: #805b1b;
+  }
+  
+  .login-box a:hover {
+    color: #c57d00;
+  }

@@ -1,0 +1,154 @@
+  /*barra de navegacion left*/
+  .barnav{
+    position:fixed;
+    border:1px solid black;
+    width: fit-content;
+    flex: 0 1 0;
+    flex-direction: column;
+    display: flex;
+    bottom: -2px;
+    left: 0px;
+    height: 100vh;
+    top:0px;
+    z-index: -1;
+    justify-content: flex-start;
+    gap: 20px;
+    background-color:#f8d393;
+  }
+  h1{
+    font-style: italic;
+  }
+  .icon{
+    flex-direction: column;
+    flex: 0 1 1;
+    display: flex;
+    width:auto;
+    filter: invert(0%) sepia(100%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+  }
+  .a_icon{
+    height: 54px;
+  }
+  /* Fin de la barra lateral */
+.empty{
+  height:50vh;
+  width:50px;
+}
+.titlebox{
+  display: flex;
+  align-items: center;
+  border:1px solid black;
+  width: 97.4vw;
+  position: fixed;
+  height: 50px;
+  left: 80px;
+  top: 0px;
+  justify-content: space-between;
+  z-index: -10;
+  background-color:#f8d393;
+}
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+table{
+  width: 85%;
+  overflow-y: auto;
+}
+.tablaprods{
+
+  margin-right: 0px;
+  margin-left: 0px;
+}
+.table-wrapper {
+  max-height: 85VH;
+  overflow: auto;
+  display:inline-block;
+  width: 100%;
+}
+.titleboxspacer{
+  width: 250;
+}
+.plato {
+  padding: 5px;
+}
+.content{
+  display: flex;
+  flex: auto;
+  flex-direction: row;
+  position: fixed;
+  left: 200px;
+  width: 97.4vw;
+  top:50px;
+  z-index: -20;
+  }
+  .stat{
+    flex:auto;
+    border:1px solid black;
+  }
+  .background{
+    background-color: rgba(92, 92, 92, 0.685);
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+  }
+  h1{
+    font-style: italic;
+  }
+  .menuPop{
+    right: 161px;
+    left: -117px;
+    top: 10px;
+    display: inline;
+    justify-content: center;
+    border-radius: 50px;
+    position: absolute;
+    z-index: auto;
+    align-items: center;
+    background-color: white;
+  }
+  .popup{
+    height: 100vh;
+    width: 100vw;
+    z-index: 0;
+  }
+  .popTitle{
+    border-radius: 50px;
+    display: flex;
+    flex: auto;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color:white;
+  }
+  .addOrderTitle{
+    display: flex;
+    flex: auto;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+  }
+  .menuAdd{
+    right: 35%;
+    left: 35%;
+    top: 70px;
+    display: inline;
+    justify-content: center;
+    background-color:white;
+    border-radius: 50px;
+    position: absolute;
+    z-index: 2;
+    align-items: center;
+  }
+  .agregarPlatoPopUp{
+    height: 100vh;
+    width: 100vw;
+    z-index: 2;
+    background-color:#5c5c5caf;
+  }
+  .popupHelado{
+    height: 100vh;
+    width: 100vw;
+    z-index: 6;
+    background-color:white;
+  }

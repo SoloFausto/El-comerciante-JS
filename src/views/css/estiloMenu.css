@@ -1,0 +1,133 @@
+    /*barra de navegacion left*/
+body{
+  background-color: rgb(246, 237, 225) !important;
+}
+.barnav{
+  position:fixed;
+  border:1px solid black;
+  width: fit-content;
+  flex: 0 1 0;
+  flex-direction: column;
+  display: flex;
+  bottom: -2px;
+  left: 0px;
+  height: 100vh;
+  top:0px;
+  z-index: -1;
+  justify-content: flex-start;
+  gap: 20px;
+  background-color:#f8d393;
+}
+h1{
+  font-style: italic;
+}
+.icon{
+  flex-direction: column;
+  flex: 0 1 1;
+  display: flex;
+  width:auto;
+  filter: invert(0%) sepia(100%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+}
+.a_icon{
+  height: 54px;
+}
+/* Fin de la barra lateral */
+
+  h1 , h4 , p{
+    font-style: italic;
+    font-size: larger;
+  }
+  .titleboxspacer{
+    width: 250;
+  }
+  .buttons{
+      display: flex;
+  }
+  .titlebox{
+    display: flex;
+    align-items: center;
+    border:1px solid black;
+    width: 97.4vw;
+    position: fixed;
+    height: 50px;
+    left: 84px;
+    top: 0px;
+    justify-content: space-between;
+    z-index: -1;
+    background-color:#f8d393;
+  }
+  .content{
+    display: flex;
+    flex: auto;
+    flex-direction: row;
+    position: absolute;
+    left: 90px;
+    width: 95vw;
+    top:50px;
+    z-index: -2;
+    align-items: flex-start;
+    }
+    .stat{
+      flex:auto;
+      border:1px solid black;
+    }
+    table, th, td {
+        border: 2px solid black;
+        border-collapse: collapse !important;
+        background-color: antiquewhite;
+      }
+      .popupHelado{
+        height: 100vh;
+        width: 100vw;
+        z-index: 0;
+      }
+      .background{
+        background-color: rgba(92, 92, 92, 0.685);
+        height: 100vh;
+        width: 100vw;
+        position: fixed;
+      }
+      .menuAdd{
+        right: 35%;
+        left: 35%;
+        top: 70px;
+        display: inline;
+        justify-content: center;
+        background-color: white;
+        border-radius: 50px;
+        position: absolute;
+        z-index: 2;
+        align-items: center;
+      }  
+      .menuPop{
+        right: 45px;
+        left: 45px;
+        top: 70px;
+        display: inline;
+        justify-content: center;
+        background-color: white;
+        border-radius: 50px;
+        position: absolute;
+        z-index: auto;
+        align-items: center;
+      }
+      .popup{
+        height: 100vh;
+        width: 100vw;
+        z-index: 0;
+      }
+      .agregarComboDiv{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+      .popTitle{
+        margin-right: 40px;
+        margin-left: 20px;
+        display: flex;
+        justify-content: space-between;
+      }
+      .btn-light{
+        margin-top: 0.4vh;
+      }
