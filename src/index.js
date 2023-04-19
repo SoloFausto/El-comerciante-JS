@@ -14,7 +14,8 @@ app.use(express.static('views'));
 import { verifyUser } from './api/users/login.js';
 import { listAllEnvases, deleteEnvase, createEnvase, listByIdEnvases, modifyEnvase } from './api/menu/envases.js';
 import { createHelado, deleteHelado, listAllHelados, listByIdHelado, modifyHelado } from "./api/menu/helados.js";
-
+import { createProducto, deleteProducto, listAllProductos, listByIdProducto, modifyProducto } from "./api/menu/productos.js";
+import { createCombo, deleteCombo, modifyCombo,listByIdCombo,listAllCombos } from "./api/menu/combos.js";
 // LOGIN Y otras pantallas
 app.get('/', (req, res) => {
   return res.redirect('/src/views/index.html');
@@ -35,17 +36,43 @@ app.post('/api/users/login',(req,res)=> {
 
 //Combos
 app.get('/menu/combos', (req, res) => {
-  return res.send('GET HTTP method on user resource');
+  let id = req.body.id;
+  
+  if(id != null){
+    listByIdCombo(id).then((combo)=>{
+      return res.send((combo));
+    });
+    
+  }
+  else{
+    listAllCombos().then((combo)=>{
+      return res.send(combo);
+    });
+  }
 });
 
 app.post('/menu/combos', (req, res) => {
-  return res.send('POST HTTP method on user resource');
+  let nombre = req.body.nombre;
+  let descripcion = req.body.descripcion;
+  let precio = req.body.precio;
+  createCombo(nombre,descripcion,precio).then((combo)=>{
+    return res.send(combo);
+  })
 });
 app.put('/menu/combos', (req, res) => {
-  return res.send('PUT HTTP method on user resource');
+  let id = req.body.id;
+  let nombre = req.body.nombre;
+  let descripcion = req.body.descripcion;
+  let precio = req.body.precio;
+  let activo = req.body.activo;
+  modifyCombo(id,nombre,descripcion,precio,activo).then((combo)=>{
+    return res.send(combo);
+  });
 });
 app.delete('/menu/combos', (req, res) => {
-  return res.send('DELETE HTTP method on user resource');
+  let id = req.body.id;
+  deleteCombo(id);
+  return res.send();
 });
 
 
@@ -179,7 +206,7 @@ app.put('/menu/productos', (req, res) => {
 });
 app.delete('/menu/productos', (req, res) => {
   let id = req.body.id;
-  deleteHelado(id);
+  deleteProducto(id);
   return res.send();
 });
 
