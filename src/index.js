@@ -143,18 +143,46 @@ app.delete('/menu/helados', (req, res) => {
 
 //Productos
 app.get('/menu/productos', (req, res) => {
-  return res.send('GET HTTP method on user resource');
+  let id = req.body.id;
+  
+  if(id != null){
+    listByIdProducto(id).then((envase)=>{
+      return res.send((envase));
+    });
+    
+  }
+  else{
+    listAllProductos().then((envases)=>{
+      return res.send(envases);
+    });
+  }
 });
+
 app.post('/menu/productos', (req, res) => {
-  return res.send('POST HTTP method on user resource');
+  let nombre = req.body.nombre;
+  let descripcion = req.body.descripcion;
+  let precio = req.body.precio;
+  createProducto(nombre,descripcion,precio).then((producto)=>{
+    return res.send(producto);
+  })  
 });
+
 app.put('/menu/productos', (req, res) => {
-  return res.send('PUT HTTP method on user resource');
+  let id = req.body.id;
+  let nombre = req.body.nombre;
+  let descripcion = req.body.descripcion;
+  let precio = req.body.precio;
+  let activo = req.body.activo;
+  modifyProducto(id,nombre,descripcion,precio,activo).then((producto)=>{
+    return res.send(producto);
+  });
 });
 app.delete('/menu/productos', (req, res) => {
-  return res.send('DELETE HTTP method on user resource');
+  let id = req.body.id;
+  deleteHelado(id);
+  return res.send();
 });
 
 app.listen(PORT, () => {
-  console.log(`API is listening on port ${PORT}`);
+  console.log(`Server is listening on port ${PORT}`);
 });

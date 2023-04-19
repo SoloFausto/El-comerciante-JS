@@ -1,5 +1,7 @@
 import { PrismaClient } from '../../../node_modules/@prisma/client/index.js';
 const prisma = new PrismaClient();
+
+
 export async function listAllProductos(){
     let getProducto = await prisma.producto.findMany();
     return getProducto;
@@ -24,11 +26,11 @@ export async function createProducto(nombre,descripcion,precio){
     });
     return producto;
 }
-export async function modifyProducto(id,nombre,descripcion, precio,activo){
+export async function modifyProducto(id,nombre,descripcion,precio,activo){
     let idInt = parseInt(id);
     let precioInt = parseInt(precio);
     let activoBool = Boolean(activo);
-    let updateProducto = await prisma.helado.update({
+    let updateProducto = await prisma.producto.update({
         where:{
             id: idInt
         },
