@@ -6,13 +6,16 @@ export async function addComboEnvase(paramIdCombo,paramIdEnvase){
     let idEnvase = parseInt(paramIdEnvase);
     prisma.combo_envase.findUnique({
         where:{
-            idCombo: idCombo,
-            idEnvase: idEnvase
+            idCombo_idEnvase:{
+                idCombo: idCombo,
+                idEnvase: idEnvase
+            }
         },
         select:{
             cantidad: true
         }
     }).then((cantidadEnvase)=>{
+        
         if(cantidadEnvase == null){
             prisma.combo_envase.create({
                 data:{
@@ -25,13 +28,17 @@ export async function addComboEnvase(paramIdCombo,paramIdEnvase){
             });
         }
         else{
-            prisma.combo.update({
+            prisma.combo_envase.update({
                 where:{
-                    idCombo: idCombo,
-                    idEnvase: idEnvase
+                    idCombo_idEnvase:{
+                        idCombo: idCombo,
+                        idEnvase: idEnvase
+                    }
                 },
                 data:{
-                    cantidad: cantidadEnvase++
+                    cantidad: {
+                        increment: 1
+                    }
                 }
             })
             .then((envaseCombo)=>{
@@ -39,4 +46,51 @@ export async function addComboEnvase(paramIdCombo,paramIdEnvase){
             });
         };
     });
-}
+};
+export async function deleteComboEnvase(paramIdCombo,paramIdEnvase){
+    let idCombo = parseInt(paramIdCombo);
+    let idEnvase = parseInt(paramIdEnvase);
+    prisma.combo_envase.findUnique({
+        where:{
+            idCombo_idEnvase:{
+                idCombo: idCombo,
+                idEnvase: idEnvase
+            }
+        },
+        select:{
+            cantidad: true
+        }
+    }).then((cantidadEnvase)=>{
+        if(cantidadEnvase == null){
+        }
+        else if (cantidadEnvase.cantidad == 1){
+            console.log(cantidadEnvase.cantidad);
+            prisma.combo_envase.delete({
+                where:{
+                    idCombo_idEnvase:{
+                        idCombo: 1,
+                        idEnvase: 1
+                    }
+                }
+            })
+        }
+        else{
+            prisma.combo_envase.update({
+                where:{
+                    idCombo_idEnvase:{
+                        idCombo: idCombo,
+                        idEnvase: idEnvase
+                    }
+                },
+                data:{
+                    cantidad: {
+                        decrement: 1
+                    }
+                }
+            })
+            .then((envaseCombo)=>{
+                return envaseCombo;
+            });
+        };
+    });
+};

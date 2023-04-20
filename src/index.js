@@ -16,6 +16,7 @@ import { listAllEnvases, deleteEnvase, createEnvase, listByIdEnvases, modifyEnva
 import { createHelado, deleteHelado, listAllHelados, listByIdHelado, modifyHelado } from "./api/menu/helados.js";
 import { createProducto, deleteProducto, listAllProductos, listByIdProducto, modifyProducto } from "./api/menu/productos.js";
 import { createCombo, deleteCombo, modifyCombo,listByIdCombo,listAllCombos } from "./api/menu/combos.js";
+import { addComboEnvase, deleteComboEnvase } from "./api/menu/combos-envases-productos.js";  
 // LOGIN Y otras pantallas
 app.get('/', (req, res) => {
   return res.redirect('/src/views/index.html');
@@ -76,6 +77,37 @@ app.delete('/menu/combos', (req, res) => {
 });
 
 
+// combo-envase
+app.get('/menu/combos', (req, res) => {
+  let idCombo = req.body.idCombo;
+  let idEnvase = req.body.idEnvase;
+  
+});
+app.post('/menu/combos/envase',(req, res)=>{
+  let idCombo = req.body.idCombo;
+  let idEnvase = req.body.idEnvase;
+  addComboEnvase(idCombo,idEnvase);
+  return res.send();
+});
+app.delete('/menu/combos/envase',(req,res)=>{
+  let idCombo = req.body.idCombo;
+  let idEnvase = req.body.idEnvase;
+  deleteComboEnvase(idCombo,idEnvase);
+  return res.send();
+});
+//combo-producto
+app.post('/menu/combos/producto',(req, res)=>{
+  let idCombo = req.body.idCombo;
+  let idProducto = req.body.idProducto;
+  addComboProducto(idCombo,idProducto);
+  return res.send();
+});
+app.delete('/menu/combo/producto',(req,res)=>{
+  let idCombo = req.body.idCombo;
+  let idProducto = req.body.idProducto;
+  deleteComboProducto(idCombo,idProducto);
+  return res.send();
+})
 
 
 // Envases
