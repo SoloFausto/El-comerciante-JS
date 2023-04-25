@@ -1,4 +1,4 @@
-import { PrismaClient } from '../../../node_modules/@prisma/client/index.js';
+import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 export async function listAllHelados(){
     let getHelado = await prisma.helado.findMany();
@@ -40,9 +40,12 @@ export async function modifyHelado(id,nombre,descripcion,activo){
 
 export async function deleteHelado(id){
     let idInt = parseInt(id);
-    let deleteHelado = await prisma.helado.delete({
+    let deleteHelado = await prisma.helado.update({
         where: {
             id: idInt
+        },
+        data:{
+            activo: 0
         }
     })
 }

@@ -1,4 +1,4 @@
-import { PrismaClient } from '../../../node_modules/@prisma/client/index.js';
+import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 
@@ -46,9 +46,12 @@ export async function modifyCombo(id,nombre,descripcion,precio,activo){
 
 export async function deleteCombo(id){
     let idInt = parseInt(id);
-    let deleteCombo = await prisma.combo.delete({
+    let deleteCombo = await prisma.combo.update({
         where: {
             id: idInt
+        },
+        data:{
+            activo: 0
         }
     })
 }

@@ -1,4 +1,4 @@
-import { PrismaClient } from '../../../node_modules/@prisma/client/index.js';
+import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 
@@ -46,9 +46,12 @@ export async function modifyProducto(id,nombre,descripcion,precio,activo){
 
 export async function deleteProducto(id){
     let idInt = parseInt(id);
-    let deleteProducto = await prisma.producto.delete({
+    let deleteProducto = await prisma.producto.update({
         where: {
             id: idInt
+        },
+        data:{
+            activo: 0
         }
     })
 }

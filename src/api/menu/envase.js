@@ -1,5 +1,5 @@
 const prisma = new PrismaClient();
-import { PrismaClient } from '../../../node_modules/@prisma/client/index.js';
+import { PrismaClient } from '@prisma/client';
 export async function listAllEnvases(){
     let getEnvase = await prisma.envase.findMany();
     return getEnvase;
@@ -48,9 +48,12 @@ export async function modifyEnvase(id,nombre,descripcion,capacidad,precio,activo
 }
 export async function deleteEnvase(id){
     let idInt = parseInt(id);
-    let deleteEnvase = await prisma.envase.delete({
+    let deleteEnvase = await prisma.envase.update({
         where: {
             id: idInt
+        },
+        data:{
+            activo: 0
         }
     });
 

@@ -63,8 +63,8 @@ model combo_envase {
   idCombo  Int
   idEnvase Int
   cantidad Int?
-  combo    combo  @relation(fields: [idCombo], references: [id], onUpdate: Restrict, map: "FK_ComboEnvase_Combo")
-  envase   envase @relation(fields: [idEnvase], references: [id], onUpdate: Restrict, map: "FK_ComboEnvase_Envase")
+  combo    combo  @relation(fields: [idCombo], references: [id], onUpdate: Restrict, map: "FK_ComboEnvase_Combo", onDelete: Restrict)
+  envase   envase @relation(fields: [idEnvase], references: [id], onUpdate: Restrict, map: "FK_ComboEnvase_Envase", onDelete: Restrict)
 
   @@id([idCombo, idEnvase])
   @@index([idEnvase], map: "FK_ComboEnvase_Envase")

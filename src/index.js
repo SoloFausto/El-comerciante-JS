@@ -11,22 +11,23 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static('views'));
 //custom imports
-import { verifyUser } from './api/users/login.js';
-import { listAllEnvases, deleteEnvase, createEnvase, listByIdEnvases, modifyEnvase } from './api/menu/envases.js';
-import { createHelado, deleteHelado, listAllHelados, listByIdHelado, modifyHelado } from "./api/menu/helados.js";
-import { createProducto, deleteProducto, listAllProductos, listByIdProducto, modifyProducto } from "./api/menu/productos.js";
-import { createCombo, deleteCombo, modifyCombo,listByIdCombo,listAllCombos } from "./api/menu/combos.js";
-import { addComboEnvase, deleteComboEnvase } from "./api/menu/combos-envases-productos.js";  
+import { verifyUser } from './api/user/login.js';
+import { listAllEnvases, deleteEnvase, createEnvase, listByIdEnvases, modifyEnvase } from './api/menu/envase.js';
+import { createHelado, deleteHelado, listAllHelados, listByIdHelado, modifyHelado } from "./api/menu/helado.js";
+import { createProducto, deleteProducto, listAllProductos, listByIdProducto, modifyProducto } from "./api/menu/producto.js";
+import { createCombo, deleteCombo, modifyCombo,listByIdCombo,listAllCombos } from "./api/menu/combo.js";
+import { addComboEnvase, deleteComboEnvase, addComboProducto, deleteComboProducto} from "./api/menu/combos-envases-productos.js";
+import { listAllComanda, listByIdComanda, createComanda, modifyComanda, deleteComanda } from "./api/comanda/comanda.js";
 // LOGIN Y otras pantallas
 app.get('/', (req, res) => {
   return res.redirect('/src/views/index.html');
 });
-app.post('/api/users/login',(req,res)=> {
+app.post('/api/user/login',(req,res)=> {
   console.log(req.body.user);
   console.log(req.body.pass);
   verifyUser(req.body.user,req.body.pass).then((usuario)=>{
     if(usuario.length == 1){
-      return res.redirect('/menu/envases');
+      return res.redirect('/menu/envase');
     }
     else{
       return res.redirect('/src/views/index.html');
@@ -36,7 +37,7 @@ app.post('/api/users/login',(req,res)=> {
 });
 
 //Combos
-app.get('/menu/combos', (req, res) => {
+app.get('/api/menu/combo', (req, res) => {
   let id = req.body.id;
   
   if(id != null){
@@ -52,7 +53,7 @@ app.get('/menu/combos', (req, res) => {
   }
 });
 
-app.post('/menu/combos', (req, res) => {
+app.post('/api/menu/combo', (req, res) => {
   let nombre = req.body.nombre;
   let descripcion = req.body.descripcion;
   let precio = req.body.precio;
@@ -60,7 +61,7 @@ app.post('/menu/combos', (req, res) => {
     return res.send(combo);
   })
 });
-app.put('/menu/combos', (req, res) => {
+app.put('/api/menu/combo', (req, res) => {
   let id = req.body.id;
   let nombre = req.body.nombre;
   let descripcion = req.body.descripcion;
@@ -70,7 +71,7 @@ app.put('/menu/combos', (req, res) => {
     return res.send(combo);
   });
 });
-app.delete('/menu/combos', (req, res) => {
+app.delete('/api/menu/combo', (req, res) => {
   let id = req.body.id;
   deleteCombo(id);
   return res.send();
@@ -78,31 +79,31 @@ app.delete('/menu/combos', (req, res) => {
 
 
 // combo-envase
-app.get('/menu/combos', (req, res) => {
+app.get('/api/menu/combo', (req, res) => {
   let idCombo = req.body.idCombo;
   let idEnvase = req.body.idEnvase;
   
 });
-app.post('/menu/combos/envase',(req, res)=>{
+app.post('/api/menu/combo/envase',(req, res)=>{
   let idCombo = req.body.idCombo;
   let idEnvase = req.body.idEnvase;
   addComboEnvase(idCombo,idEnvase);
   return res.send();
 });
-app.delete('/menu/combos/envase',(req,res)=>{
+app.delete('/api/menu/combo/envase',(req,res)=>{
   let idCombo = req.body.idCombo;
   let idEnvase = req.body.idEnvase;
   deleteComboEnvase(idCombo,idEnvase);
   return res.send();
 });
 //combo-producto
-app.post('/menu/combos/producto',(req, res)=>{
+app.post('/api/menu/combo/producto',(req, res)=>{
   let idCombo = req.body.idCombo;
   let idProducto = req.body.idProducto;
   addComboProducto(idCombo,idProducto);
   return res.send();
 });
-app.delete('/menu/combo/producto',(req,res)=>{
+app.delete('/api/menu/combo/producto',(req,res)=>{
   let idCombo = req.body.idCombo;
   let idProducto = req.body.idProducto;
   deleteComboProducto(idCombo,idProducto);
@@ -111,7 +112,7 @@ app.delete('/menu/combo/producto',(req,res)=>{
 
 
 // Envases
-app.get('/menu/envases', (req, res) => {
+app.get('/api/menu/envase', (req, res) => {
   let id = req.body.id;
   
   if(id != null){
@@ -127,7 +128,7 @@ app.get('/menu/envases', (req, res) => {
   }
 });
 
-app.post('/menu/envases', (req, res) => {
+app.post('/api/menu/envase', (req, res) => {
   let nombre = req.body.nombre;
   let descripcion = req.body.descripcion;
   let capacidad = req.body.capacidad;
@@ -137,7 +138,7 @@ app.post('/menu/envases', (req, res) => {
   });
 
 });
-app.put('/menu/envases', (req, res) => {
+app.put('/api/menu/envase', (req, res) => {
   let nombre = req.body.nombre;
   let descripcion = req.body.descripcion;
   let capacidad = req.body.capacidad;
@@ -149,7 +150,7 @@ app.put('/menu/envases', (req, res) => {
   });
 
 });
-app.delete('/menu/envases', (req, res) => {
+app.delete('/api/menu/envase', (req, res) => {
   let id = req.body.id;
   deleteEnvase(id);
   return res.send();
@@ -160,7 +161,7 @@ app.delete('/menu/envases', (req, res) => {
 
 
 // Helados
-app.get('/menu/helados', (req, res) => {
+app.get('/api/menu/helado', (req, res) => {
   let id = req.body.id;
   
   if(id != null){
@@ -175,14 +176,14 @@ app.get('/menu/helados', (req, res) => {
     });
   }
 });
-app.post('/menu/helados', (req, res) => {
+app.post('/api/menu/helado', (req, res) => {
   let nombre = req.body.nombre;
   let descripcion = req.body.descripcion;
   createHelado(nombre,descripcion).then((helado)=>{
     return res.send(helado);
   })  
 });
-app.put('/menu/helados', (req, res) => {
+app.put('/api/menu/helado', (req, res) => {
   let nombre = req.body.nombre;
   let descripcion = req.body.descripcion;
   let id = req.body.id;
@@ -191,7 +192,7 @@ app.put('/menu/helados', (req, res) => {
     return res.send(helado);
   });
 });
-app.delete('/menu/helados', (req, res) => {
+app.delete('/api/menu/helado', (req, res) => {
   let id = req.body.id;
   deleteHelado(id);
   return res.send();
@@ -201,7 +202,7 @@ app.delete('/menu/helados', (req, res) => {
 
 
 //Productos
-app.get('/menu/productos', (req, res) => {
+app.get('/api/menu/producto', (req, res) => {
   let id = req.body.id;
   
   if(id != null){
@@ -217,7 +218,7 @@ app.get('/menu/productos', (req, res) => {
   }
 });
 
-app.post('/menu/productos', (req, res) => {
+app.post('/api/menu/producto', (req, res) => {
   let nombre = req.body.nombre;
   let descripcion = req.body.descripcion;
   let precio = req.body.precio;
@@ -226,7 +227,7 @@ app.post('/menu/productos', (req, res) => {
   })  
 });
 
-app.put('/menu/productos', (req, res) => {
+app.put('/api/menu/producto', (req, res) => {
   let id = req.body.id;
   let nombre = req.body.nombre;
   let descripcion = req.body.descripcion;
@@ -236,7 +237,7 @@ app.put('/menu/productos', (req, res) => {
     return res.send(producto);
   });
 });
-app.delete('/menu/productos', (req, res) => {
+app.delete('/api/menu/producto', (req, res) => {
   let id = req.body.id;
   deleteProducto(id);
   return res.send();
@@ -245,3 +246,55 @@ app.delete('/menu/productos', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
 });
+
+//comandas
+
+app.get('/api/comanda', (req, res) => {
+  let id = req.body.id;
+  
+  if(id != null){
+    listByIdComanda(id).then((envase)=>{
+      return res.send((envase));
+    });
+    
+  }
+  else{
+    listAllComanda().then((envases)=>{
+      return res.send(envases);
+    });
+  }
+});
+app.post('/api/comanda',(req, res)=>{
+  let mesa = req.body.mesa;
+  let total = req.body.total;
+  let estado = 1;
+  let idUsuario = req.body.idUsuario;
+  //date
+  let currentDate = new Date();
+  let currentDayOfMonth = currentDate.getDate();
+  let currentMonth = currentDate.getMonth();
+  let currentYear = currentDate.getFullYear();
+  let fecha = currentDayOfMonth + "-" + (currentMonth + 1) + "-" + currentYear;
+  //
+  let formaPago = req.body.forma_pago;
+  createComanda(mesa,total,estado,idUsuario,fecha,formaPago).then((comanda)=>{
+    return res.send(comanda);
+  })
+});
+app.put('/api/comanda',(req,res)=>{
+  let id = req.body.id;
+  let mesa = req.body.mesa;
+  let total = req.body.total;
+  let estado = req.body.estado;
+  let idUsuario = req.body.idUsuario;
+  let formaPago = req.body.forma_pago;
+  modifyComanda(id,mesa,total,estado,idUsuario,formaPago).then((comanda)=>{
+    return res.send(comanda);
+  });
+});
+app.delete('/api/comanda', (req, res) => {
+  let id = req.body.id;
+  deleteComanda(id);
+  return res.send();
+});
+
