@@ -18,6 +18,8 @@ import { createProducto, deleteProducto, listAllProductos, listByIdProducto, mod
 import { createCombo, deleteCombo, modifyCombo,listByIdCombo,listAllCombos } from "./api/menu/combo.js";
 import { addComboEnvase, deleteComboEnvase, addComboProducto, deleteComboProducto} from "./api/menu/combos-envases-productos.js";
 import { listAllComanda, listByIdComanda, createComanda, modifyComanda, deleteComanda } from "./api/comanda/comanda.js";
+import { addComandaProducto, deleteComandaProducto, listAllProductoComanda } from "./api/comanda/producto.js";
+import { addComandaCombo, deleteComandaCombo, listAllComboComanda } from "./api/comanda/combo.js";
 // LOGIN Y otras pantallas
 app.get('/', (req, res) => {
   return res.redirect('/src/views/index.html');
@@ -267,16 +269,10 @@ app.get('/api/comanda', (req, res) => {
 app.post('/api/comanda',(req, res)=>{
   let mesa = req.body.mesa;
   let total = req.body.total;
-  let estado = 1;
+  let estado = req.body.estado;
   let idUsuario = req.body.idUsuario;
-  //date
-  let currentDate = new Date();
-  let currentDayOfMonth = currentDate.getDate();
-  let currentMonth = currentDate.getMonth();
-  let currentYear = currentDate.getFullYear();
-  let fecha = currentDayOfMonth + "-" + (currentMonth + 1) + "-" + currentYear;
-  //
-  let formaPago = req.body.forma_pago;
+  let fecha = new Date();
+  let formaPago = req.body.formaPago;
   createComanda(mesa,total,estado,idUsuario,fecha,formaPago).then((comanda)=>{
     return res.send(comanda);
   })
@@ -297,4 +293,43 @@ app.delete('/api/comanda', (req, res) => {
   deleteComanda(id);
   return res.send();
 });
+//comanda producto
+app.get('/api/comanda/producto',(req, res)=>{
+  let idComanda = req.body.idComanda;
+  listAllProductoComanda(idComanda).then((producto)=>{
+    return res.send(producto);
+  });
 
+});
+app.post('/api/comanda/producto',(req, res)=>{
+  let idComanda = req.body.idComanda;
+  let idProducto = req.body.idProducto;
+  addComandaProducto(idComanda,idProducto);
+  return res.send();
+});
+app.delete('/api/comanda/producto',(req,res)=>{
+  let idComanda = req.body.idComanda;
+  let idProducto = req.body.idProducto;
+  deleteComandaProducto(idComanda,idProducto);
+  return res.send();
+});
+//comanda combo
+app.get('/api/comanda/combo',(req, res)=>{
+  let idComanda = req.body.idComanda;
+  listAllComboComanda(idComanda).then((producto)=>{
+    return res.send(producto);
+  });
+
+});
+app.post('/api/comanda/combo',(req, res)=>{
+  let idComanda = req.body.idComanda;
+  let idCombo = req.body.idCombo;
+  addComandaCombo(idComanda,idCombo);
+  return res.send();
+});
+app.delete('/api/comanda/combo',(req,res)=>{
+  let idComanda = req.body.idComanda;
+  let idCombo = req.body.idCombo;
+  deleteComandaCombo(idComanda,idCombo);
+  return res.send();
+});

@@ -14,7 +14,7 @@ model comanda {
   estado                  Int?
   idUsuario               Int
   fecha                   DateTime?                 @default(now()) @db.Timestamp(0)
-  forma_pago              String?                   @db.VarChar(40)
+  formaPago              String?                   @db.VarChar(40)
   usuario                 usuario                   @relation(fields: [idUsuario], references: [id], onUpdate: Restrict, map: "FK_Comanda_idUsuario")
   comanda__envase_helado_ comanda__envase_helado_[]
   combo_comanda           combo_comanda[]

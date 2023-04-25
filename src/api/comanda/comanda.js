@@ -8,7 +8,7 @@ export async function listAllComanda(){
 }
 export async function listByIdComanda(paramId){
     let productoId = parseInt(paramId);
-    let getProducto = await prisma.comanda.findUnique({
+    let getComanda = await prisma.comanda.findUnique({
         where: {
             id: productoId
         }
@@ -22,11 +22,12 @@ export async function createComanda(mesa,total,estado,idUsuario,fecha,formaPago)
     let idUsuarioInt = parseInt(idUsuario);
     let createComanda = await prisma.comanda.create({
         data: {
+            estado: estadoInt,
             mesa: mesaInt,
             total: totalInt,
             idUsuario: idUsuarioInt,
             fecha: fecha,
-            forma_pago: formaPago
+            formaPago: formaPago
         }
     });
     return createComanda;
@@ -47,9 +48,9 @@ export async function modifyComanda(id,mesa,total,estado,idUsuario,fecha,formaPa
             total: totalInt,
             idUsuario: idUsuarioInt,
             fecha: fecha,
-            forma_pago: formaPago
+            formaPago: formaPago
         }
-    })
+    });
     return updateComanda;
 }
 
@@ -62,5 +63,5 @@ export async function deleteComanda(id){
         data:{
             estado: 0
         }
-    })
+    });
 }
