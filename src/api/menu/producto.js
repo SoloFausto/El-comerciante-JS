@@ -19,6 +19,7 @@ export async function createProducto(nombre,descripcion,precio){
     let precioInt = parseInt(precio);
     let producto = await prisma.producto.create({
         data: {
+            activo: true,
             nombre: nombre,
             descripcion: descripcion,
             precio: precioInt
@@ -51,7 +52,7 @@ export async function deleteProducto(id){
             id: idInt
         },
         data:{
-            activo: 0
+            activo: false
         }
     })
 }

@@ -1,0 +1,77 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+type ComandaComboCollection {
+  comboId                String
+  filledEnvaseCollection String[]
+}
+
+type ComandaHeladoEnvaseCollection {
+  envaseId           String
+  heladoIdCollection String[]
+}
+
+model comanda {
+  id                     String                          @id @default(auto()) @map("_id") @db.ObjectId
+  activo                 Boolean
+  comboCollection        ComandaComboCollection[]
+  fecha                  DateTime                        @db.Date
+  formaPago              String
+  heladoEnvaseCollection ComandaHeladoEnvaseCollection[]
+  idUsuario              Int
+  mesa                   Int
+  productoIdCollection   String[]
+  total                  Int
+}
+
+model combo {
+  id                   String   @id @default(auto()) @map("_id") @db.ObjectId
+  activo               Boolean
+  descripcion          String
+  envaseIdCollection   String[]
+  nombre               String
+  precio               String
+  productoIdCollection String[]
+}
+
+model envase {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  activo      Boolean
+  capacidad   Int
+  descripcion String
+  nombre      String
+  precio      Int
+}
+
+model helado {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  activo      Boolean
+  descripcion String
+  nombre      String
+}
+
+model producto {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  activo      Boolean
+  descripcion String
+  nombre      String
+  precio      Int
+}
+
+model usuario {
+  id                   String  @id @default(auto()) @map("_id") @db.ObjectId
+  activo               Boolean
+  contrasena           String
+  nombre               String
+  permComandas         Boolean
+  permMenu             Boolean
+  permSoloLeerComandas Boolean
+  permTableta          Boolean
+  permUsuario          Boolean
+}

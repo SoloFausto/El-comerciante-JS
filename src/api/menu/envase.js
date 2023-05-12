@@ -21,7 +21,8 @@ export async function createEnvase(nombre,descripcion,capacidad,precio){
             nombre: nombre,
             descripcion: descripcion,
             capacidad: capacidadInt,
-            precio: precioInt
+            precio: precioInt,
+            activo: true
         }
     });
     return envase;
@@ -53,7 +54,7 @@ export async function deleteEnvase(id){
             id: idInt
         },
         data:{
-            activo: 0
+            activo: false
         }
     });
 

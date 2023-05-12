@@ -16,6 +16,7 @@ export async function listByIdHelado(paramId){
 export async function createHelado(nombre,descripcion){
     let helado = await prisma.helado.create({
         data: {
+            activo: true,
             nombre: nombre,
             descripcion: descripcion
         }
@@ -45,7 +46,7 @@ export async function deleteHelado(id){
             id: idInt
         },
         data:{
-            activo: 0
+            activo: false
         }
     })
 }
