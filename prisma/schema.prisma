@@ -9,12 +9,24 @@ datasource db {
 
 type ComandaComboCollection {
   comboId                String
-  filledEnvaseCollection String[]
+  filledEnvaseCollection ComandaComboCollectionFilledEnvaseCollection[]
+  note                   String
+}
+
+type ComandaComboCollectionFilledEnvaseCollection {
+  envaseId           String
+  heladoIdCollection String[]
 }
 
 type ComandaHeladoEnvaseCollection {
   envaseId           String
   heladoIdCollection String[]
+  note               String
+}
+
+type ComandaProductoIdCollection {
+  note       String
+  productoId String
 }
 
 model comanda {
@@ -26,7 +38,7 @@ model comanda {
   heladoEnvaseCollection ComandaHeladoEnvaseCollection[]
   idUsuario              Int
   mesa                   Int
-  productoIdCollection   String[]
+  productoIdCollection   ComandaProductoIdCollection[]
   total                  Int
 }
 
