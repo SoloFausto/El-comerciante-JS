@@ -7,10 +7,9 @@ export async function listAllProductos(){
     return getProducto;
 }
 export async function listByIdProducto(paramId){
-    let productoId = parseInt(paramId);
     let getProducto = await prisma.producto.findUnique({
         where: {
-            id: productoId
+            id: paramId
         }
     });
     return getProducto;
@@ -27,13 +26,12 @@ export async function createProducto(nombre,descripcion,precio){
     });
     return producto;
 }
-export async function modifyProducto(id,nombre,descripcion,precio,activo){
-    let idInt = parseInt(id);
+export async function modifyProducto(paramid,nombre,descripcion,precio,activo){
     let precioInt = parseInt(precio);
     let activoBool = Boolean(activo);
     let updateProducto = await prisma.producto.update({
         where:{
-            id: idInt
+            id: paramid
         },
         data:{
             nombre: nombre,
@@ -45,11 +43,10 @@ export async function modifyProducto(id,nombre,descripcion,precio,activo){
     return updateProducto;
 }
 
-export async function deleteProducto(id){
-    let idInt = parseInt(id);
-    let deleteProducto = await prisma.producto.update({
+export async function deleteProducto(paramid){
+    await prisma.producto.update({
         where: {
-            id: idInt
+            id: paramid
         },
         data:{
             activo: false

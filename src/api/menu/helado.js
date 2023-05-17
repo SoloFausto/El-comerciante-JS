@@ -5,10 +5,10 @@ export async function listAllHelados(){
     return getHelado;
 }
 export async function listByIdHelado(paramId){
-    let heladoId = parseInt(paramId);
+    console.log(typeof paramId);
     let getHelado = await prisma.helado.findUnique({
         where: {
-            id: heladoId
+            id: paramId
         }
     });
     return getHelado;
@@ -23,12 +23,11 @@ export async function createHelado(nombre,descripcion){
     });
     return helado;
 }
-export async function modifyHelado(id,nombre,descripcion,activo){
-    let idInt = parseInt(id);
+export async function modifyHelado(paramId,nombre,descripcion,activo){
     let activoBool = Boolean(activo);
     let updateHelado = await prisma.helado.update({
         where:{
-            id: idInt
+            id: paramId
         },
         data:{
             nombre: nombre,
@@ -39,11 +38,10 @@ export async function modifyHelado(id,nombre,descripcion,activo){
     return updateHelado;
 }
 
-export async function deleteHelado(id){
-    let idInt = parseInt(id);
-    let deleteHelado = await prisma.helado.update({
+export async function deleteHelado(paramId){
+    await prisma.helado.update({
         where: {
-            id: idInt
+            id: paramId
         },
         data:{
             activo: false

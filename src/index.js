@@ -206,8 +206,8 @@ app.delete('/api/menu/helado', (req, res) => {
 //Productos
 app.get('/api/menu/producto', (req, res) => {
   let id = req.body.id;
-  
   if(id != null){
+
     listByIdProducto(id).then((envase)=>{
       return res.send((envase));
     });
