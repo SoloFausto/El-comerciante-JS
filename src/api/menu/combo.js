@@ -7,51 +7,53 @@ export async function listAllCombos(){
     return getCombo;
 }
 export async function listByIdCombo(paramId){
-    let comboId = parseInt(paramId);
     let getCombo = await prisma.combo.findUnique({
         where: {
-            id: comboId
+            id: paramId
         }
     });
     return getCombo;
 }
-export async function createCombo(nombre,descripcion,precio){
-    let precioInt = parseInt(precio);
+export async function createCombo(paramCombo){
+    let precioInt = parseInt(paramCombo.precio);
     let combo = await prisma.combo.create({
         data: {
-            nombre: nombre,
-            descripcion: descripcion,
-            precio: precioInt
+            nombre: paramCombo.nombre,
+            descripcion: paramCombo.descripcion,
+            precio: precioInt,
+            productoIdCollection: paramCombo.productoIdCollection,
+            envaseIdCollection: paramCombo.envaseIdCollection,
+            activo: true
         }
     });
     return combo;
 }
-export async function modifyCombo(id,nombre,descripcion,precio,activo){
-    let idInt = parseInt(id);
-    let precioInt = parseInt(precio);
-    let activoBool = Boolean(activo);
+export async function modifyCombo(paramCombo){
+    let precioInt = parseInt(paramCombo.precio);
+    let activoBool = Boolean(paramCombo.activo);
     let updateCombo = await prisma.combo.update({
         where:{
-            id: idInt
+            id: paramCombo.id
         },
         data:{
-            nombre: nombre,
-            descripcion: descripcion,
+            nombre: paramCombo.nombre,
+            descripcion: paramCombo.descripcion,
             precio: precioInt,
-            activo: activoBool
+            activo: activoBool,
+            productoIdCollection: paramCombo.productoIdCollection,
+            envaseIdCollection: paramCombo.envaseIdCollection,
         }
     })
     return updateCombo;
 }
 
-export async function deleteCombo(id){
-    let idInt = parseInt(id);
+export async function deleteCombo(paramid){
     let deleteCombo = await prisma.combo.update({
         where: {
-            id: idInt
+            id: paramid
         },
         data:{
-            activo: 0
+            activo: false
         }
     })
 }

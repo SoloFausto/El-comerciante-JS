@@ -3,6 +3,7 @@ import bodyParser from "../node_modules/body-parser/index.js";
 import express from "../node_modules/express/index.js";
 // constant declarations
 const app = express(); 
+app.use(express.json());
 const PORT = process.env.PORT || 3000;
 global.mysqlCredentials = '';
 
@@ -56,20 +57,13 @@ app.get('/api/menu/combo', (req, res) => {
 });
 
 app.post('/api/menu/combo', (req, res) => {
-  let nombre = req.body.nombre;
-  let descripcion = req.body.descripcion;
-  let precio = req.body.precio;
-  createCombo(nombre,descripcion,precio).then((combo)=>{
+  let recieviedCombo = req.body;
+  createCombo(recieviedCombo).then((combo)=>{
     return res.send(combo);
   })
 });
 app.put('/api/menu/combo', (req, res) => {
-  let id = req.body.id;
-  let nombre = req.body.nombre;
-  let descripcion = req.body.descripcion;
-  let precio = req.body.precio;
-  let activo = req.body.activo;
-  modifyCombo(id,nombre,descripcion,precio,activo).then((combo)=>{
+  modifyCombo(req.body).then((combo)=>{
     return res.send(combo);
   });
 });
@@ -157,10 +151,6 @@ app.delete('/api/menu/envase', (req, res) => {
   deleteEnvase(id);
   return res.send();
 });
-
-
-
-
 
 // Helados
 app.get('/api/menu/helado', (req, res) => {

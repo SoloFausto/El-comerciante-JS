@@ -48,7 +48,7 @@ model combo {
   descripcion          String
   envaseIdCollection   String[]
   nombre               String
-  precio               String
+  precio               Int
   productoIdCollection String[]
 }
 
