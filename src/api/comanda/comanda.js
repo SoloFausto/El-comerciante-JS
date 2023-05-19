@@ -88,14 +88,14 @@ export async function modifyComanda(paramComanda){
     return updateComanda;
 }
 
-export async function deleteComanda(id){
-    let idInt = parseInt(id);
+export async function deleteComanda(paramid){
+
     let deleteProducto = await prisma.comanda.update({
         where: {
-            id: idInt
+            id: paramid
         },
         data:{
-            estado: 0
+            activo: ""
         }
     });
 }
