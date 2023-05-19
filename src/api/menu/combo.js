@@ -2,6 +2,16 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 
+// {
+//     "id":"",
+//     "nombre":"",
+//     "descripcion": "",
+//     "precio": "",
+//     "activo": true,
+//     "productoIdCollection": [1,3],
+//     "envaseIdCollection": [6,12,8]
+//  }
+
 export async function listAllCombos(){
     let getCombo = await prisma.combo.findMany();
     return getCombo;

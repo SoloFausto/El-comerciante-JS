@@ -36,10 +36,10 @@ model comanda {
   fecha                  DateTime                        @db.Date
   formaPago              String
   heladoEnvaseCollection ComandaHeladoEnvaseCollection[]
-  idUsuario              Int
+  idUsuario              String
   mesa                   Int
   productoIdCollection   ComandaProductoIdCollection[]
-  total                  Int
+  precio                  Int
 }
 
 model combo {

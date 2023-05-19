@@ -257,24 +257,14 @@ app.get('/api/comanda', (req, res) => {
   }
 });
 app.post('/api/comanda',(req, res)=>{
-  let mesa = req.body.mesa;
-  let total = req.body.total;
-  let estado = req.body.estado;
-  let idUsuario = req.body.idUsuario;
-  let fecha = new Date();
-  let formaPago = req.body.formaPago;
-  createComanda(mesa,total,estado,idUsuario,fecha,formaPago).then((comanda)=>{
+  let recievedComanda = req.body;
+  createComanda(recievedComanda).then((comanda)=>{
     return res.send(comanda);
   })
 });
 app.put('/api/comanda',(req,res)=>{
-  let id = req.body.id;
-  let mesa = req.body.mesa;
-  let total = req.body.total;
-  let estado = req.body.estado;
-  let idUsuario = req.body.idUsuario;
-  let formaPago = req.body.forma_pago;
-  modifyComanda(id,mesa,total,estado,idUsuario,formaPago).then((comanda)=>{
+  let recievedComanda = req.body;
+  modifyComanda(recievedComanda).then((comanda)=>{
     return res.send(comanda);
   });
 });
