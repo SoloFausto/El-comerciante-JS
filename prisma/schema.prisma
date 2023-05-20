@@ -37,9 +37,9 @@ model comanda {
   formaPago              String
   heladoEnvaseCollection ComandaHeladoEnvaseCollection[]
   idUsuario              String
-  mesa                   Int
+  mesa                   BigInt
+  precio                 BigInt
   productoIdCollection   ComandaProductoIdCollection[]
-  precio                  Int
 }
 
 model combo {
@@ -48,17 +48,17 @@ model combo {
   descripcion          String
   envaseIdCollection   String[]
   nombre               String
-  precio               Int
+  precio               BigInt
   productoIdCollection String[]
 }
 
 model envase {
   id          String  @id @default(auto()) @map("_id") @db.ObjectId
   activo      Boolean
-  capacidad   Int
+  capacidad   BigInt
   descripcion String
   nombre      String
-  precio      Int
+  precio      BigInt
 }
 
 model helado {
@@ -73,7 +73,7 @@ model producto {
   activo      Boolean
   descripcion String
   nombre      String
-  precio      Int
+  precio      BigInt
 }
 
 model usuario {
@@ -86,4 +86,5 @@ model usuario {
   permSoloLeerComandas Boolean
   permTableta          Boolean
   permUsuario          Boolean
+  token                String
 }

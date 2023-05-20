@@ -95,7 +95,7 @@ export async function deleteComanda(paramid){
             id: paramid
         },
         data:{
-            activo: ""
+            activo: false
         }
     });
 }

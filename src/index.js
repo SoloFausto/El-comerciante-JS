@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static('views'));
 //custom imports
-import { verifyUser } from './api/user/login.js';
+import { verifyUser } from './api/user/user.js';
 import { listAllEnvases, deleteEnvase, createEnvase, listByIdEnvases, modifyEnvase } from './api/menu/envase.js';
 import { createHelado, deleteHelado, listAllHelados, listByIdHelado, modifyHelado } from "./api/menu/helado.js";
 import { createProducto, deleteProducto, listAllProductos, listByIdProducto, modifyProducto } from "./api/menu/producto.js";
@@ -25,20 +25,19 @@ import { addComandaCombo, deleteComandaCombo, listAllComboComanda } from "./api/
 app.get('/', (req, res) => {
   return res.redirect('/src/views/index.html');
 });
-app.post('/api/user/login',(req,res)=> {
-  console.log(req.body.user);
-  console.log(req.body.pass);
-  verifyUser(req.body.user,req.body.pass).then((usuario)=>{
-    if(usuario.length == 1){
-      return res.redirect('/menu/envase');
-    }
-    else{
-      return res.redirect('/src/views/index.html');
-    }
-      
-  });
-});
 
+
+app.post('/api/user/login',(req,res)=> {
+  const { username, password } = req.body;
+  if (!(username && password)){
+    res.status(400).send("All inputs are required");
+  };
+  const oldUser = User.findOne({ email });
+
+});
+app.post('/api/user/register', (req,res)=>{
+
+});
 //Combos
 app.get('/api/menu/combo', (req, res) => {
   let id = req.body.id;
